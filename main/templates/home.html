@@ -1,0 +1,37 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% for post in pages.items %}
+<div class="card">
+    <div class="card-body d-flex justify-content-between">
+       <a href="{{url_for('post_read', id=post.id)}}">  {{post.title}}</a>
+       <div>
+       <span class="badge bg-secondary">{{post.date}}</span>
+       <span class="badge bg-{% if post.author==current_user %}danger{% else %}warning{% endif %}">{{post.author.username}}</span>
+    </div>
+    </div>
+</div>
+{% endfor %}
+
+<div class="d-flex justify-content-center">
+<nav aria-label="..." class="mt-3 ">
+    <ul class="pagination">
+      <li class="page-item {% if not pages.has_prev %} disabled {% endif %}">
+        <a class="page-link" href="/?page={{pages.prev_num}}">Previous</a>
+      </li>
+      {% for page in pages.iter_pages()%}
+      <li class="page-item {% if page==pages.page %} active {% endif %}"  aria-current="page">
+        <a class="page-link" href="/?page={{page}}">{{page}}</a>
+      </li>
+      {% endfor %}
+      <li class="page-item {% if not pages.has_next %}disabled {% endif %}">
+        <a class="page-link" href="/?page={{pages.next_num}}">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+{% endblock content %}
+
+

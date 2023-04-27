@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+{% block title %}
+{{current_user.username}}
+{% endblock title%}
+
+
+
+{% block content %}
+<div class="d-flex justify-content-between">
+    <div>
+<h1>{{form.email.data}}</h1>
+<h2>{{form.username.data}}</h2>
+</div>
+<div>
+    <a href="{{url_for('create_post')}}" class="btn btn-warning m-2">New Post</a>
+</div>
+</div>
+
+<div class="text-info bg-secondary w-50 rounded-3 border shadow-lg m-auto  mt-4  ">
+    <form action="" method="POST" class="m-4">
+        {{form.csrf_token }}
+        {{form.username.label(class='form-control-lable mt-3')}}{{form.username(class='form-control')}}
+        {{form.email.label(class='form-control-label mt-3')}}{{form.email(class='form-control')}}
+        <input type="submit" value="Update" class="btn btn-outline-info mt-2 d-block">
+    </form>
+</div>
+{% include 'inc/form_errors.html'%}
+
+{% endblock content%}

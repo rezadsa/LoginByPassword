@@ -1,0 +1,28 @@
+
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="card" style="width: 100%;">
+ 
+    <div class="card-body">
+      <h4 class="card-title">{{post.title}}</h4>
+      <h6 class="card-title d-flex justify-content-between">
+        <div>
+        <span class="badge bg-secondary">Author :</span> 
+        <span class="badge bg-warning">{{post.author.username}}</span> 
+        <small class="badge bg-warning">{{post.date}}</small>
+      </div>
+      <div>
+        {% if current_user.is_authenticated %}
+        {% if post.author==current_user %}
+        <a href="{{url_for('post_update',id=post.id)}}" class="btn btn-info">Update Post</a>
+        <a href="{{url_for('post_delete',id=post.id)}}" class="btn btn-danger">delete Post</a>
+        
+        {% endif %}
+        {% endif%}
+      </div> 
+      </h6>
+      <p class="card-text">{{post.content}}</p>
+    </div>
+  </div>
+{% endblock content %}

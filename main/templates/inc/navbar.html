@@ -1,0 +1,19 @@
+
+
+<div class="container-fluid  ">
+    <nav class="navbar  bg-primary  shadow rounded-3  border">
+      <div class="ms-3  ">
+        <a class="btn btn-outline-light " href="{{url_for('home')}}">Home</a>
+        {% if current_user.is_authenticated %}
+        <a class="btn btn-outline-light" href="{{url_for('logout')}}">Logout</a>
+        <a class="btn btn-outline-light" href="{{url_for('profile')}}">Profile</a>
+         
+        
+        {% else %}
+        <a class="btn btn-outline-light" href="{{url_for('register')}}">Register</a>
+        <a class="btn btn-outline-light" href="{{url_for('login')}}">Login</a>
+        {% endif %}
+      </div>
+      <span class="badge fs-5 mx-5  px-4 bg-danger float-end">{{current_user.username}}</span>
+    </nav>
+  </div>
