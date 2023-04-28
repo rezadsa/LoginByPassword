@@ -1,4 +1,5 @@
-Flask=2.2.3
 
-Python= 3.11.2
-Werkzeug =2.2.3
+Run On VS.code
+
+1- pipenv shell
+2- python run.py
